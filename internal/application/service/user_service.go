@@ -17,7 +17,7 @@ type UserServiceImpl struct {
 
 func NewUserService(
 	userRepo repository.UserRepository,
-) UserService {
+) *UserServiceImpl {
 	return &UserServiceImpl{
 		userRepo: userRepo,
 	}

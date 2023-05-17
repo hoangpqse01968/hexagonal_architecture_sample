@@ -4,14 +4,13 @@ import (
 	"errors"
 
 	"github.com/hoangpqse01968/hexagonal_architecture_sample/internal/application/domain"
-	"github.com/hoangpqse01968/hexagonal_architecture_sample/internal/application/repository"
 )
 
 type UserInfrastructure struct {
 	users map[int64]*domain.User
 }
 
-func NewUserInfrastructure() repository.UserRepository {
+func NewUserInfrastructure() *UserInfrastructure {
 	users := make(map[int64]*domain.User, 3)
 	users[1] = &domain.User{Id: 1, Name: "A", Email: "A@gmail.com", Address: "Test address 1"}
 	users[2] = &domain.User{Id: 2, Name: "B", Email: "B@gmail.com", Address: "Test address 2"}

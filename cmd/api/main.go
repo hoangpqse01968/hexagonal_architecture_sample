@@ -1,20 +1,20 @@
 package main
 
 import (
-	"github.com/hoangpqse01968/hexagonal_architecture_sample/internal/application/service"
-	"github.com/hoangpqse01968/hexagonal_architecture_sample/internal/handler"
-	"github.com/hoangpqse01968/hexagonal_architecture_sample/internal/infrastructure"
+	"context"
+
+	"github.com/hoangpqse01968/hexagonal_architecture_sample/di"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	ctx := context.Background()
+
 	engine := gin.Default()
 	v1Api := engine.Group("api/v1")
 
-	userRepo := infrastructure.NewUserInfrastructure()
-	userService := service.NewUserService(userRepo)
-	getUserHandler := handler.NewGetUserHandler(userService)
+	getUserHandler := di.BuildUserHandler(ctx)
 	v1Api.GET("/user", getUserHandler.HandleGetUser)
 
 	engine.Run(":8080")
